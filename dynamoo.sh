@@ -15,7 +15,12 @@ if [ ! $(which aws) ]; then
   popd
 fi
 
-ip=$(curl -s http://ipecho.net/plain)
+if [ -z "$2" ]; then
+  ip=$(curl -s http://ipecho.net/plain)
+else
+  ip="$2"
+fi
+
 tmpfile=$(mktemp /tmp/r53temp.XXXXXXXX)
 
 if [ -z "$1" ]; then
